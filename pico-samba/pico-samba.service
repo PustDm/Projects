@@ -1,0 +1,17 @@
+[Unit]
+Description=Pico Samba - minimal read-only file share
+After=network.target
+
+[Service]
+Type=simple
+# Edit -name, -port, -dir for your setup
+ExecStart=/usr/local/bin/pico-samba -name=pico-samba -port=445 -dir=/srv/share
+Restart=on-failure
+RestartSec=5
+
+# For port 445 (default SMB) root is required
+# For non-privileged port (e.g. 1445) add: User=nobody
+# User=nobody
+
+[Install]
+WantedBy=multi-user.target
